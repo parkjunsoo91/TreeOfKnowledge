@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Directed Graph Editor</title>
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="css-circular-prog-bar.css" media="all">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,6 +38,15 @@
 
 <!-- right sidebar -->
 <div class="w3-sidebar w3-bar-block w3-2017-greenery" style="width:20%;right:0%;">
+
+  <div class="progress-circle p25" style="margin-left: 30%;">
+     <span>75%</span>
+     <div class="left-half-clipper">
+        <div class="first50-bar"></div>
+        <div class="value-bar"></div>
+     </div>
+  </div>
+
 </div>
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
