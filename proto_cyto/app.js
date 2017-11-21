@@ -15,19 +15,54 @@ function removeSelected(){
 function seeSelected(){
 	console.log(selected.data())
 }
+id = 5
+function nextId(){
+	id += 1;
+	return id
+}
 
 
 var cy = cytoscape({
 	container: document.getElementById('cy'),
 	elements: [ // list of graph elements to start with
 		{ // node a
-			data: { id: 'a', type:'type1' }
+			data: 
+			{ 
+				id: '1', 
+				type:'type1', 
+				text:'Game\nStudies' 
+			}
 		},
 		{ // node b
-			data: { id: 'b', type:'type2' }
+			data: 
+			{ 
+				id: '2', 
+				type:'type2', 
+				text: 'What is Gamification and\n gamification research?'
+			}
+		},
+		{ // node c
+			data: 
+			{ 
+				id: '3', 
+				type:'type3',
+				text: 'Definition of Gamification' 
+			}
 		},
 		{ // edge ab
-			data: { id: 'ab', source: 'a', target: 'b' }
+			data: 
+			{ 
+				id: '4', 
+				source: '1', 
+				target: '2' 
+			}
+		},
+		{ // edge bc
+			data: 
+			{ 
+				id: '5', 
+				source: '2', 
+				target: '3' }
 		}
 	],
 	style: [ // the stylesheet for the graph
@@ -35,26 +70,48 @@ var cy = cytoscape({
 			selector: 'node[type="type1"]',
 			style: {
 				'width': 'label',
-				'height': 30,
-				'background-color': '#080',
+				'height': 'label',
+				'padding': '10px',
+				'shape': 'rectangle',
+				'background-color': '#F00',
 				'border-width': 2,
 				'border-style': 'solid',
 				'border-color': 'black',
-				'padding': '10px',
-				'label': 'data(type)'
+				'label': 'data(text)'
 			}
 	    },
 	    {
 			selector: 'node[type="type2"]',
 			style: {
-				'width': '60',
-				'height': '60',
-				'shape': 'pentagon',
+				'width': 'label',
+				'height': 'label',
+				'padding': '10px',
+				'compound-sizing-wrt-labels': 'include',
+				'shape': 'rectangle',
+				'background-color': '#FF0',
+				'border-width': 2,
+				'border-style': 'solid',
+				'border-color': 'black',
+				'label': 'data(text)',
+				'color': 'blue',
+				'text-events': 'yes',
+				'text-valign': 'center',
+				'text-halign': 'center',
+				'text-wrap': 'wrap',
+				'text-max-width': 1000
+			}
+	    },
+	    {
+			selector: 'node[type="type3"]',
+			style: {
+				'width': 60,
+				'height': 60,
+				'shape': 'roundrectangle',
 				'background-color': '#080',
 				'border-width': 2,
 				'border-style': 'solid',
 				'border-color': 'black',
-				'label': 'data(id)'
+				'label': 'data(text)'
 			}
 	    },
 		{
@@ -62,20 +119,17 @@ var cy = cytoscape({
 			style: {
 				'width': 5,
 				'curve-style': 'haystack',
-				'haystack-radius': 0.5,
+				'haystack-radius': 0,
 				'line-color': '#852',
-				'line-style': 'dashed',
+				'line-style': 'solid',
 				'target-arrow-color': '#0f0',
 				'target-arrow-shape': 'triangle',
-				'source-label': 'source',
-				'source-text-offset': '50',
-				'overlay-color':'blue'
 			}
 		},
 		{
 			selector: 'core',
 			style:{
-				'active-bg-color': 'blue'
+				'active-bg-color': 'red'
 			}
 		}
 	],
@@ -201,21 +255,54 @@ cy.contextMenus({
 	        coreAsWell: true,
 	        onClickFunction: function (event) {
 	          var data = {
-	              group: 'nodes'
+	              //group: 'nodes',
+	          	  type: 'type3',
+	              text: 'new node'
 	          };
 	          
 	          var pos = event.position || event.cyPosition;
 	          
 	          cy.add({
-	              data: data,
-	              position: {
+	          		group:'nodes',
+	            	data: data,
+	            	position: {
 	                  x: pos.x,
 	                  y: pos.y
 	              }
 	          });
 	        }
-	      },
-	      {
+	    },
+	    {
+	    	id: 'add-connected-node',
+	    	content: 'add connected node',
+	    	tooltipText: 'create a node connected to this node',
+	    	image: {src : "add.svg", width : 12, height : 12, x : 6, y : 4},
+	    	selector: 'node',
+	    	onClickFunction: function(event) {
+	    		var target = event.target || event.cyTarget;
+	    		var pos = event.position || event.cyPosition;
+	    		var id = nextId()
+	    		cy.add([
+	    		{
+	    			group: 'nodes',
+	    			data: {
+	    				id: id,
+	    				type: 'type3',
+	    				text: 'new node',
+	    			},
+	    			position: {x: pos.x, y: pos.y + 10}
+	    		},
+	    		{
+	    			group: 'edges',
+	    			data: {
+	    				source: target.id(),
+	    				target: id
+	    			}	
+	    		}]);
+	    	}
+
+	    },
+	    {
 	        id: 'remove-selected',
 	        content: 'remove selected',
 	        tooltipText: 'remove selected',
@@ -224,8 +311,8 @@ cy.contextMenus({
 	        onClickFunction: function (event) {
 	          cy.$(':selected').remove();
 	        }
-	      },
-	      {
+	    },
+	    {
 	        id: 'select-all-nodes',
 	        content: 'select all nodes',
 	        tooltipText: 'select all nodes',
@@ -233,8 +320,8 @@ cy.contextMenus({
 	        onClickFunction: function (event) {
 	          selectAllOfTheSameType(event.target || event.cyTarget);
 	        }
-	      },
-	      {
+	    },
+	    {
 	        id: 'select-all-edges',
 	        content: 'select all edges',
 	        tooltipText: 'select all edges',
