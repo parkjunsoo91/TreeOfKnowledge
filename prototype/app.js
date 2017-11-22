@@ -307,7 +307,7 @@ cy.contextMenus({
 			  for (var i=0; i < edges.length; i++){
 			  	edges[i].data()['type'] = 'default';
 			  }
-			  decrease();
+			  decreaseNodenum();
 	        },
 	        hasTrailingDivider: true
 		},
