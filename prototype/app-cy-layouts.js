@@ -19,7 +19,7 @@ var layoutOptions = {
   animationEasing: undefined,
 
   // The duration of the animation for animate:'end'
-  animationDuration: 1000,
+  animationDuration: 2000,
 
   // A function that determines whether the node should be animated
   // All nodes animated by default on animate enabled
@@ -51,13 +51,13 @@ var layoutOptions = {
   randomize: false,
 
   // Extra spacing between components in non-compound graphs
-  componentSpacing: 40,
+  componentSpacing: 20,
 
   // Node repulsion (non overlapping) multiplier
   nodeRepulsion: function( node ){ return 512; },
 
   // Node repulsion (overlapping) multiplier
-  nodeOverlap: 4,
+  nodeOverlap: 2,
 
   // Ideal edge (non nested) length
   idealEdgeLength: function( edge ){ return 32; },
