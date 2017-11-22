@@ -21,14 +21,19 @@ var initialElements = [{
 		id: newId(), 
 		type:'type1', 
 		text:'Game\nStudies' 
-	}
+	},
+	position: {x: 0, y: 0}
 }]
 for (var i = 0; i < chapters.length; i++) {
-	var element = {data: {
-		id: newId(),
-		type: 'type2',
-		text: chapters[i],
-	}};
+	var element = {
+		data: {
+			id: newId(),
+			type: 'type2',
+			text: chapters[i],
+		},
+		position: {x:0, y:-100 * (i+1)},
+
+	};
 	initialElements.push(element);
 }
 
@@ -44,3 +49,12 @@ for (var i = 0; i < chapters.length; i++) {
 
 
 //TBD: add recommendation presets: map "definition" keyword with the recommended defs. render them.
+var suggestions = [
+'XXXs definition',
+
+];
+
+var suggestMap = {
+	'definition': suggestions[0]
+};
+

@@ -9,20 +9,24 @@ var cy = cytoscape({
 	elements: initialElements,
 	style: [ // the stylesheet for the graph
 	    {
-			selector: 'node[type="type1"]',
+			selector: 'node[type="type1"]', //title
 			style: titleNodeStyle,
 	    },
 	    {
-			selector: 'node[type="type2"]',
+			selector: 'node[type="type2"]', //chapter
 			style: chapterNodeStyle,
 	    },
 	    {
-			selector: 'node[type="type3"]',
+			selector: 'node[type="type3"]', //keyword (limited), made from right toolbar
 			style: keywordNodeStyle,
 	    },
 	    {
 			selector: 'node[type="suggestion"]',
 			style: suggestionNodeStyle,
+	    },
+	    {
+			selector: 'node[type="type4"]', //descriptions (unlimited), made with right click
+			style: descriptionNodeStyle,
 	    },
 		{
 			selector: 'edge[type="default"]',
@@ -39,7 +43,7 @@ var cy = cytoscape({
 	],
 
 	layout: {
-	    name: 'random',
+	    name: 'preset',
 	    rows: 1
   	},
 
@@ -117,12 +121,15 @@ function seeSelected(){
 	console.log(selected.data())
 }
 
-function addNode(pos){
+function addNode(pos, type){
 	var data = {
 		id: newId(),
-		type: 'type3',
+		type: 'type4',
 		text: 'new node'
 	};
+	if (type == 'suggestion'){
+		data['type'] = 'suggestion';		
+	}
 	var ele = cy.add({
   		group:'nodes',
     	data: data,
@@ -159,7 +166,24 @@ function updateText(){
 	var text = document.getElementById('textarea').value;
 	console.log(text)
 	selected.data()['text'] = text;
+	handleSuggestion(selected);
 }
+
+function handleSuggestion(node){
+	var text = node.data()['text'];
+	Object.keys(suggestMap).forEach(function(key,index) {
+    // key: the name of the object key
+    // index: the ordinal position of the key within the object
+	    if (text.search(key) != -1){
+	    	var newtext = suggestMap[key]
+	    	var pos = node.position();
+	    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
+	    	newNode.data()['text'] = newtext;
+	    	addEdge(node.id(), newNode.id(), 'suggestion')
+	    } 
+	});
+}
+
 function addPredefinedNode(){
 
   if(document.getElementById('nodenum').value == 0) {
@@ -244,6 +268,25 @@ cy.$('#1').qtip({
 cy.contextMenus({
 	menuItems: [
 	    {
+	        id: 'accept-suggestion',
+	        content: 'accept suggestion',
+	        tooltipText: 'add suggested node to your tree',
+	        selector: 'node[type="suggestion"]',
+	        onClickFunction: function (event) {
+	          var target = event.target || event.cyTarget;
+	          if(document.getElementById('nodenum').value == 0) {
+			    return;
+			  }
+			  target.data()['type'] = 'type3';
+			  var edges = target.connectedEdges();
+			  for (var i=0; i < edges.length; i++){
+			  	edges[i].data()['type'] = 'default';
+			  }
+			  decrease();
+	        },
+	        hasTrailingDivider: true
+		},
+		{
 	        id: 'remove',
 	        content: 'remove',
 	        tooltipText: 'remove',
