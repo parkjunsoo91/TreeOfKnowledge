@@ -45,3 +45,23 @@ tr{
   top: 100px;
   right: 100px;
 }
+
+.spawn img{
+  position: absolute;
+  cursor: move;
+  z-index: 9;
+}
+
+.tree {
+  position: absolute;
+  z-index: -99;
+  width: 100%;
+  display: block;
+}
+
+.tree img{
+  width: 90%;
+  display: block;
+  margin: auto;
+  opacity: 0.3;
+}
