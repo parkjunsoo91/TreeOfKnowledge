@@ -100,15 +100,6 @@ function seeSelected(){
 	console.log(selected.data())
 }
 
-var id = getCurrentIdCounter()
-function getCurrentIdCounter(){
-	//TBD: need to get the max index of loaded graph
-	return 5
-}
-function newId(){
-	id += 1;
-	return id
-}
 function addNode(pos){
 	var data = {
 		id: newId(),
