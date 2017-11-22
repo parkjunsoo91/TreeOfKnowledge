@@ -121,7 +121,7 @@ function addNode(pos){
 		type: 'type3',
 		text: 'new node'
 	};
-	cy.add({
+	var ele = cy.add({
   		group:'nodes',
     	data: data,
     	position: {
@@ -129,17 +129,23 @@ function addNode(pos){
           y: pos.y
       	}
   	});
+  	return ele;
 }
-function addEdge(id1, id2){
+function addEdge(id1, id2, type){
 	var data = {
 		id: newId(),
+		type: 'default',
 		source: id1,
 		target: id2,
 	};
-	cy.add({
+	if (type == 'suggestion'){
+		data['type'] = 'suggestion';		
+	}
+	var ele = cy.add({
 		group: 'edges',
 		data: data,
 	});
+	return ele;
 }
 
 
@@ -214,26 +220,9 @@ cy.contextMenus({
 	    	onClickFunction: function(event) {
 	    		var target = event.target || event.cyTarget;
 	    		var pos = event.position || event.cyPosition;
-	    		var nodeId = newId();
-	    		var edgeId = newId();
-	    		cy.add([
-	    		{
-	    			group: 'nodes',
-	    			data: {
-	    				id: nodeId,
-	    				type: 'type3',
-	    				text: 'new node',
-	    			},
-	    			position: {x: pos.x, y: pos.y - 100}
-	    		},
-	    		{
-	    			group: 'edges',
-	    			data: {
-	    				id: edgeId,
-	    				source: target.id(),
-	    				target: nodeId,
-	    			}	
-	    		}]);
+	    		var newNode = addNode(pos);
+	    		addEdge(target.id(), newNode.id());
+	    		
 	    	}
 	    },
 	    {
