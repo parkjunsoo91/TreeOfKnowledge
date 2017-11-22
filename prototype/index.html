@@ -36,6 +36,16 @@
 <!-- body -->
 <body>
   <div id="cy">
+    <!-- <div class="w3-panel w3-red w3-display-container w3-card" style="position: absolute;right:0;opacity: 0.95;z-index:11;">
+      <span onclick="this.parentElement.style.display='none'"
+      class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+      <h4><b>Fail!</b></h4>
+      <p>There is no leaf.</p>
+    </div> -->
+    <div class="alert" id="cardError" style="display:none;">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <strong>Fail!</strong> There is no leaf.
+    </div>
     <div id="fspawn_p" class="fspawn">
       <!-- <img id="fruit_test" src="images/fruit2.png" width="50px"></img> -->
     </div>
