@@ -96,7 +96,7 @@ cy.on('tap', 'node', function(evt){
 	}
 
 	//show text content in UI
-	var text = node.data()['text'];
+	var text = node.data('text');
 	console.log(text);
 	var textarea = document.getElementById('textarea')
 	textarea.value = text;
@@ -121,15 +121,6 @@ function importTree(){
 	var text = localStorage.getItem("myTree");
 	var obj = JSON.parse(text);
 	cy.json(obj);
-}
-
-function removeSelected(){
-	if (selected != null){
-		cy.remove(selected);
-	}
-}
-function seeSelected(){
-	console.log(selected.data())
 }
 
 function addNode(pos, type){
@@ -166,7 +157,21 @@ function addEdge(id1, id2, type){
 		group: 'edges',
 		data: data,
 	});
+	reward('firstEdge');
 	return ele;
+}
+
+var achievements = {
+	firstEdge: {earned:false, msg:"Congratulations! You just made your first connection between node elements!"},
+	firstChapterComplete: {earned:false, msg:"Congratulations! You just completed your first chapter!"},
+}
+
+function reward(achievement){
+	if (achievements[achievement]['earned'] == false){
+		achievements[achievement]['earned'] = true;
+		showRewardMsg(achievements[achievement]['msg']);
+		increaseNodenum();
+	}
 }
 
 
@@ -176,12 +181,12 @@ function updateText(){
 	}
 	var text = document.getElementById('textarea').value;
 	console.log(text)
-	selected.data()['text'] = text;
+	selected.data('text', text);
 	handleSuggestion(selected);
 }
 
 function handleSuggestion(node){
-	var text = node.data()['text'];
+	var text = node.data('text');
 	Object.keys(suggestMap).forEach(function(key,index) {
     // key: the name of the object key
     // index: the ordinal position of the key within the object
@@ -189,12 +194,21 @@ function handleSuggestion(node){
 	    	var newtext = suggestMap[key]
 	    	var pos = node.position();
 	    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
-	    	newNode.data()['text'] = newtext;
+	    	newNode.data('text', newtext);
 	    	addEdge(node.id(), newNode.id(), 'suggestion')
 	    	addQtip(newNode);
 	    }
 	});
 }
+
+function showRewardMsg(msg){
+	var x = document.getElementById('cardReward');
+	if (x.style.display === 'none'){
+		x.style.display = 'block';
+	}
+	document.getElementById('rewardMsg').innerHTML = msg;
+}
+
 
 function addPredefinedNode(){
 
@@ -223,13 +237,23 @@ function addPredefinedNode(){
     decreaseNodenum();
 }
 
+function increaseNodenum(n){
+	console.log(n)
+	var resource = parseInt(document.getElementById('nodenum').value);
+	if (n == undefined){
+		n = 1;
+	}
+	resource += n;
+	document.getElementById('nodenum').value = resource; 
+}
+
 function decreaseNodenum(){
-    var resource = document.getElementById('nodenum').value;
-    if(resource == 0) {
-      return;
-    }
-    resource -= 1;
-    document.getElementById('nodenum').value = resource;
+	var resource = document.getElementById('nodenum').value;
+	if(resource == 0) {
+	  return;
+	}
+	resource -= 1;
+	document.getElementById('nodenum').value = resource;
 }
 
 function addFruit(){
@@ -322,10 +346,10 @@ cy.contextMenus({
 	          if(document.getElementById('nodenum').value == 0) {
 			    return;
 			  }
-			  target.data()['type'] = 'type3';
+			  target.data('type', 'type3');
 			  var edges = target.connectedEdges();
 			  for (var i=0; i < edges.length; i++){
-			  	edges[i].data()['type'] = 'default';
+			  	edges[i].data('type', 'default');
 			  }
 			  decreaseNodenum();
 	        },

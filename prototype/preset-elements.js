@@ -30,6 +30,7 @@ for (var i = 0; i < chapters.length; i++) {
 			id: newId(),
 			type: 'type2',
 			text: chapters[i],
+			progress: 0.0
 		},
 		position: {x:0, y:-100 * (i+1)},
 

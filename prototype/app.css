@@ -102,6 +102,19 @@ tr{
     top: 10px;
 }
 
+.reward {
+  position: absolute;
+  z-index: 11;
+  padding: 20px;
+  background-color: green;
+  color: white;
+  opacity: 0.83;
+  transition: opacity 0.6s;
+  top: 10px;
+  right: 10px;
+
+}
+
 .closebtn {
     margin-left: 15px;
     color: white;
