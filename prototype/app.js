@@ -180,6 +180,7 @@ function handleSuggestion(node){
 	    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
 	    	newNode.data()['text'] = newtext;
 	    	addEdge(node.id(), newNode.id(), 'suggestion')
+	    	addQtip(newNode);
 	    } 
 	});
 }
@@ -250,20 +251,24 @@ cy.on('tap', function(event){
 	}
 });
 
-cy.$('#1').qtip({
-  content: 'here are descriptions!',
-  position: {
-    my: 'top center',
-    at: 'bottom center'
-  },
-  style: {
-    classes: 'qtip-bootstrap',
-    tip: {
-      width: 16,
-      height: 8
-    }
-  }
-});
+
+
+function addQtip(ele){
+	ele.qtip({
+		content: 'do you like the suggestion? You can ACCEPT the suggestion.',
+		position: {
+		    my: 'top center',
+		    at: 'bottom center'
+	  	},  
+	  	style: {
+		    classes: 'qtip-bootstrap',
+		    tip: {
+				width: 16,
+				height: 8
+		    }
+  		}
+  	});
+}
 
 cy.contextMenus({
 	menuItems: [
