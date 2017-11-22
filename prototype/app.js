@@ -68,8 +68,19 @@ var cy = cytoscape({
 
 playLayout();
 
-
+var state = 'normal'
 var selected = null;
+
+cy.on('tap', 'node', function(evt){
+	var node = evt.target;
+	console.log(node.id() + ' selected');
+	if (state == 'edge'){
+		state = 'normal';
+		//add edge with selected node and this node
+		addEdge(selected.id(), node.id());		
+	}
+	selected = node;
+});
 
 function playLayout(){
 	var layout = cy.layout(layoutOptions);
@@ -100,6 +111,7 @@ function newId(){
 }
 function addNode(pos){
 	var data = {
+		id: newId(),
 		type: 'type3',
 		text: 'new node'
 	};
@@ -112,13 +124,20 @@ function addNode(pos){
       	}
   	});
 }
+function addEdge(id1, id2){
+	var data = {
+		id: newId(),
+		source: id1,
+		target: id2,
+	};
+	cy.add({
+		group: 'edges',
+		data: data,
+	});
+}
 
 
-cy.on('tap', 'node', function(evt){
-	var node = evt.target;
-	console.log(node.id() + ' selected');
-	selected = node;
-});
+
 
 cy.on('tap', function(event){
 	var evtTarget = event.target;
@@ -220,6 +239,8 @@ cy.contextMenus({
 	    	onClickFunction: function(event) {
 	    		var target = event.target || event.cyTarget;
 	    		//TBD: change game state to edge addition state, and possibly show edge following cursor
+	    		state = 'edge';
+	    		selected = event.target;
 	    	}
 	    },
 	    {
