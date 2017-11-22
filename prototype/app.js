@@ -181,13 +181,17 @@ function handleSuggestion(node){
 	    	newNode.data()['text'] = newtext;
 	    	addEdge(node.id(), newNode.id(), 'suggestion')
 	    	addQtip(newNode);
-	    } 
+	    }
 	});
 }
 
 function addPredefinedNode(){
 
   if(document.getElementById('nodenum').value == 0) {
+    var x = document.getElementById('cardError');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    }
     return;
   }
 
@@ -284,7 +288,7 @@ function addQtip(ele){
 		position: {
 		    my: 'top center',
 		    at: 'bottom center'
-	  	},  
+	  	},
 	  	style: {
 		    classes: 'qtip-bootstrap',
 		    tip: {
