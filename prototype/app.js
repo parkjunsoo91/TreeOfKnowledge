@@ -86,7 +86,7 @@ cy.on('tap', 'node', function(evt){
 	//edge adding mode
 	if (state == 'edge'){
 		state = 'normal';
-		addEdge(selected.id(), node.id());		
+		addEdge(selected.id(), node.id());
 	}
 
 	//show text content in UI
@@ -102,7 +102,7 @@ function playLayout(){
 	layout.run();
 	setTimeout(function(){
 		layout.stop();
-	}, 1000)	
+	}, 1000)
 }
 
 
@@ -142,7 +142,21 @@ function addEdge(id1, id2){
 	});
 }
 
-
+function addPredefinedNode(){
+	var data = {
+		id: newId(),
+		type: 'type2',
+		text: 'new node'
+	};
+	cy.add({
+  		group:'nodes',
+    	data: data,
+    	position: {
+          x: 0,
+          y: 0
+      	}
+  	});
+}
 
 
 cy.on('tap', function(event){
@@ -232,7 +246,7 @@ cy.contextMenus({
 	    				id: edgeId,
 	    				source: target.id(),
 	    				target: nodeId,
-	    			}	
+	    			}
 	    		}]);
 	    	}
 	    },
