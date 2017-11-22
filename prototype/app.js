@@ -2,7 +2,8 @@
 
 //document.getElementById('add').onclick = function() {addNode()};
 //document.getElementById('remove').onclick = function() {removeSelected()};
-//document.getElementById('selected').onclick = function() {seeSelected()};
+document.getElementById('edit').onclick = function() {updateText()};
+
 var cy = cytoscape({
 	container: document.getElementById('cy'),
 	elements: initialElements,
@@ -76,6 +77,7 @@ var cy = cytoscape({
 
 playLayout();
 
+//global variables
 var state = 'normal'
 var selected = null;
 
@@ -131,6 +133,7 @@ function addNode(pos){
   	});
   	return ele;
 }
+
 function addEdge(id1, id2, type){
 	var data = {
 		id: newId(),
@@ -149,7 +152,13 @@ function addEdge(id1, id2, type){
 }
 
 
-
+function updateText(){
+	if (selected == null){
+		return;
+	}
+	text = document.getElementById('textarea').innerHTML;
+	selected.data()['text'] = text;
+}
 
 cy.on('tap', function(event){
 	var evtTarget = event.target;
