@@ -7,7 +7,7 @@ var defaultNodeStyle = {
 	'height': 'label',
 	'shape': 'rectangle',
 	//background
-	'background-color': '#F00',
+	'background-color': '#000',
 	//border
 	'border-width': 2,
 	'border-style': 'solid',
@@ -28,12 +28,16 @@ var defaultNodeStyle = {
 };
 
 var titleNodeStyle = Object.assign({}, defaultNodeStyle);
+titleNodeStyle['background-color'] = '#F88';
 
 var chapterNodeStyle = Object.assign({}, defaultNodeStyle);
-chapterNodeStyle['background-color'] = '#FF0';
+chapterNodeStyle['background-color'] = '#Fb8';
 
-var userNodeStyle = Object.assign({}, defaultNodeStyle);
-userNodeStyle['background-color'] = '#0F0';
+var keywordNodeStyle = Object.assign({}, defaultNodeStyle);
+keywordNodeStyle['background-color'] = '#8Fb';
+
+var descriptionNodeStyle = Object.assign({}, defaultNodeStyle);
+descriptionNodeStyle['background-color'] = '#FF8';
 
 
 var defaultEdgeStyle = {

@@ -82,7 +82,7 @@ var cy = cytoscape({
 	    },
 	    {
 			selector: 'node[type="type3"]',
-			style: userNodeStyle,
+			style: keywordNodeStyle,
 	    },
 		{
 			selector: 'edge',
@@ -95,7 +95,7 @@ var cy = cytoscape({
 	],
 
 	layout: {
-	    name: 'grid',
+	    name: 'random',
 	    rows: 1
   	},
 
@@ -134,25 +134,6 @@ var cy = cytoscape({
 var layout = cy.layout(layoutOptions);
 layout.run();
 
-cy.add({
-	group: "nodes",
-	data: {id: 'baby', weight:75},
-	position: {x:200, y:200}
-})
-
-var eles = cy.add([
-	{ group: "nodes", data: { id: "n0" }, position: { x: 100, y: 100 } },
-	{ group: "nodes", data: { id: "n1" }, position: { x: 200, y: 200 } },
-	{ group: "edges", data: { id: "e0", source: "n0", target: "n1" } }
-]);
-
-var j = cy.$('#j')
-var collection = cy.elements("node[weight>50]");
-cy.remove(collection);
-
-var collection = cy.collection();
-
-
 var selected = null;
 
 cy.on('tap', 'node', function(evt){
@@ -170,8 +151,8 @@ cy.on('tap', function(event){
 	}
 });
 
-cy.$('#a').qtip({
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+cy.$('#1').qtip({
+  content: 'shere are descriptions!',
   position: {
     my: 'top center',
     at: 'bottom center'
@@ -287,23 +268,5 @@ cy.contextMenus({
 	          cy.$(':selected').remove();
 	        }
 	    },
-	    {
-	        id: 'select-all-nodes',
-	        content: 'select all nodes',
-	        tooltipText: 'select all nodes',
-	        selector: 'node',
-	        onClickFunction: function (event) {
-	          selectAllOfTheSameType(event.target || event.cyTarget);
-	        }
-	    },
-	    {
-	        id: 'select-all-edges',
-	        content: 'select all edges',
-	        tooltipText: 'select all edges',
-	        selector: 'edge',
-	        onClickFunction: function (event) {
-	          selectAllOfTheSameType(event.target || event.cyTarget);
-	        }
-	    }
 	]
 });
