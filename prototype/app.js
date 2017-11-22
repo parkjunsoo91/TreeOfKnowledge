@@ -88,14 +88,14 @@ cy.on('tap', 'node', function(evt){
 	//edge adding mode
 	if (state == 'edge'){
 		state = 'normal';
-		addEdge(selected.id(), node.id());		
+		addEdge(selected.id(), node.id());
 	}
 
 	//show text content in UI
 	var text = node.data()['text'];
 	console.log(text);
 	var textarea = document.getElementById('textarea')
-	textarea.innerHTML = text;
+	textarea.value = text;
 	selected = node;
 });
 
@@ -104,7 +104,7 @@ function playLayout(){
 	layout.run();
 	setTimeout(function(){
 		layout.stop();
-	}, 1000)	
+	}, 1000)
 }
 
 
@@ -156,9 +156,26 @@ function updateText(){
 	if (selected == null){
 		return;
 	}
-	text = document.getElementById('textarea').innerHTML;
+	var text = document.getElementById('textarea').value;
+	console.log(text)
 	selected.data()['text'] = text;
 }
+function addPredefinedNode(){
+	var data = {
+		id: newId(),
+		type: 'type2',
+		text: 'new node'
+	};
+	cy.add({
+  		group:'nodes',
+    	data: data,
+    	position: {
+          x: 0,
+          y: 0
+      	}
+  	});
+}
+
 
 cy.on('tap', function(event){
 	var evtTarget = event.target;
@@ -231,7 +248,6 @@ cy.contextMenus({
 	    		var pos = event.position || event.cyPosition;
 	    		var newNode = addNode(pos);
 	    		addEdge(target.id(), newNode.id());
-	    		
 	    	}
 	    },
 	    {
