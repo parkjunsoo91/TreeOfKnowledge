@@ -31,7 +31,8 @@ var titleNodeStyle = Object.assign({}, defaultNodeStyle);
 titleNodeStyle['background-color'] = '#F88';
 
 var chapterNodeStyle = Object.assign({}, defaultNodeStyle);
-chapterNodeStyle['background-color'] = 'white';
+chapterNodeStyle['background-color'] = '#663300';
+chapterNodeStyle['color'] = 'white';
 
 var keywordNodeStyle = Object.assign({}, defaultNodeStyle);
 keywordNodeStyle['background-color'] = '#8Fb';
