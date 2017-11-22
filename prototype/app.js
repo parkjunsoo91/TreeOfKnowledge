@@ -180,7 +180,8 @@ function handleSuggestion(node){
 	    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
 	    	newNode.data()['text'] = newtext;
 	    	addEdge(node.id(), newNode.id(), 'suggestion')
-	    }
+	    	addQtip(newNode);
+	    } 
 	});
 }
 
@@ -224,9 +225,9 @@ function addFruit(){
 
 	var img = document.createElement('img');
   img.src = "images/fruit2.png";
-  img.style = "height:40px";
+  img.style = "height:50px";
 
-  var src = document.getElementById("spawn_p");
+  var src = document.getElementById("fspawn_p");
   src.appendChild(img);
 
   decreaseFruitnum();
@@ -251,7 +252,7 @@ function addSun(){
   img.src = "images/sun4.png";
   img.style = "height:100px";
 
-  var src = document.getElementById("spawn_p");
+  var src = document.getElementById("sspawn_p");
   src.appendChild(img);
 
   decreaseSunnum();
@@ -275,20 +276,24 @@ cy.on('tap', function(event){
 	}
 });
 
-cy.$('#1').qtip({
-  content: 'here are descriptions!',
-  position: {
-    my: 'top center',
-    at: 'bottom center'
-  },
-  style: {
-    classes: 'qtip-bootstrap',
-    tip: {
-      width: 16,
-      height: 8
-    }
-  }
-});
+
+
+function addQtip(ele){
+	ele.qtip({
+		content: 'do you like the suggestion? You can ACCEPT the suggestion.',
+		position: {
+		    my: 'top center',
+		    at: 'bottom center'
+	  	},  
+	  	style: {
+		    classes: 'qtip-bootstrap',
+		    tip: {
+				width: 16,
+				height: 8
+		    }
+  		}
+  	});
+}
 
 cy.contextMenus({
 	menuItems: [
@@ -383,3 +388,5 @@ cy.contextMenus({
 	    },
 	]
 });
+
+//image movement
