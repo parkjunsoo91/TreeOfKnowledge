@@ -35,8 +35,12 @@ for (var i = 0; i < chapters.length; i++) {
 for (var i = 0; i < chapters.length; i++) {
 	var element = {data: {
 		id: newId(),
+		type: 'default',
 		source: i+1,
 		target: i+2,
 	}};
 	initialElements.push(element);
 }
+
+
+//TBD: add recommendation presets: map "definition" keyword with the recommended defs. render them.

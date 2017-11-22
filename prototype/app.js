@@ -19,9 +19,17 @@ var cy = cytoscape({
 			selector: 'node[type="type3"]',
 			style: keywordNodeStyle,
 	    },
+	    {
+			selector: 'node[type="suggestion"]',
+			style: suggestionNodeStyle,
+	    },
 		{
-			selector: 'edge',
-			style: defaultEdgeStyle
+			selector: 'edge[type="default"]',
+			style: defaultEdgeStyle,
+		},
+		{
+			selector: 'edge[type="suggestion"]',
+			style: suggestionEdgeStyle,
 		},
 		{
 			selector: 'core',
@@ -74,11 +82,18 @@ var selected = null;
 cy.on('tap', 'node', function(evt){
 	var node = evt.target;
 	console.log(node.id() + ' selected');
+
+	//edge adding mode
 	if (state == 'edge'){
 		state = 'normal';
-		//add edge with selected node and this node
 		addEdge(selected.id(), node.id());		
 	}
+
+	//show text content in UI
+	var text = node.data()['text'];
+	console.log(text);
+	var textarea = document.getElementById('textarea')
+	textarea.innerHTML = text;
 	selected = node;
 });
 

@@ -37,7 +37,13 @@ var keywordNodeStyle = Object.assign({}, defaultNodeStyle);
 keywordNodeStyle['background-color'] = '#8Fb';
 keywordNodeStyle['shape'] = 'roundrectangle';
 
+var suggestionNodeStyle = Object.assign({}, defaultNodeStyle);
+suggestionNodeStyle['background-color'] = '#084';
+suggestionNodeStyle['shape'] = 'roundrectangle';
+suggestionNodeStyle['border-opacity'] = 0.5;
 
+
+//currently unused.. replaced by qTip UI
 var descriptionNodeStyle = Object.assign({}, defaultNodeStyle);
 descriptionNodeStyle['background-color'] = '#FF8';
 
@@ -51,6 +57,12 @@ var defaultEdgeStyle = {
 	'target-arrow-color': '#0f0',
 	'target-arrow-shape': 'triangle',
 };
+
+var suggestionEdgeStyle = Object.assign({}, defaultEdgeStyle);
+suggestionEdgeStyle['line-style'] = 'dotted';
+suggestionEdgeStyle['opacity'] = 0.5;
+
+
 
 var defaultCoreStyle = {
 	'active-bg-color': 'blue'
