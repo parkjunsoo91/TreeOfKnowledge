@@ -36,7 +36,8 @@
 <!-- body -->
 <body>
   <div id="cy">
-    </div>
+    <div id="spawn_p" class="spawn"></div>
+  </div>
 </body>
 
 <!-- right sidebar -->
@@ -61,13 +62,25 @@
           <!-- <span id="nondenum"></span> -->
         </td>
       </tr>
-      <tr class="resbtn" >
-        <td><img src="images/fruit2.png" alt="Fruit" style="height:40px"/></td>
-        <td>1</td>
+      <tr>
+        <td class="resbtn" onclick="addFruit()">
+          <div>
+            <img src="images/fruit2.png" alt="Fruit" style="height:40px"/>
+          </div>
+        </td>
+        <td>
+          <input type="text" id="fruitnum" value="1" readonly="readonly" style="width:20%;">
+        </td>
       </tr>
-      <tr class="resbtn" >
-        <td><img src="images/sun4.png" alt="Sun" style="height:40px"/></td>
-        <td>0</td>
+      <tr>
+        <td class="resbtn" >
+          <div>
+            <img src="images/sun4.png" alt="Sun" style="height:40px"/>
+          </div>
+        </td>
+        <td>
+          <input type="text" id="sunnum" value="1" readonly="readonly" style="width:20%;">
+        </td>
       </tr>
       <!-- <tr>
         <td></td>

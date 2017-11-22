@@ -149,7 +149,7 @@ function addEdge(id1, id2, type){
 		target: id2,
 	};
 	if (type == 'suggestion'){
-		data['type'] = 'suggestion';		
+		data['type'] = 'suggestion';
 	}
 	var ele = cy.add({
 		group: 'edges',
@@ -190,12 +190,12 @@ function addPredefinedNode(){
     return;
   }
 
-	var data = {
+  var data = {
 		id: newId(),
-		type: 'type2',
+		type: 'type3',
 		text: 'new node'
 	};
-	cy.add({
+	var ele = cy.add({
   		group:'nodes',
     	data: data,
     	position: {
@@ -204,10 +204,10 @@ function addPredefinedNode(){
       	}
   	});
 
-    decrease();
+    decreaseNodenum();
 }
 
-function decrease(){
+function decreaseNodenum(){
     var resource = document.getElementById('nodenum').value;
     if(resource == 0) {
       return;
@@ -216,6 +216,30 @@ function decrease(){
     document.getElementById('nodenum').value = resource;
 }
 
+function addFruit(){
+
+  if(document.getElementById('fruitnum').value == 0) {
+    return;
+  }
+
+	var img = document.createElement("img");
+  img.src = "images/fruit2.png";
+  img.style = "height:40px";
+
+  var src = document.getElementById("spawn_p");
+  src.appendChild(img);
+
+  decreaseFruitnum();
+}
+
+function decreaseFruitnum(){
+    var resource = document.getElementById('fruitnum').value;
+    if(resource == 0) {
+      return;
+    }
+    resource -= 1;
+    document.getElementById('fruitnum').value = resource;
+}
 
 cy.on('tap', function(event){
 	var evtTarget = event.target;
