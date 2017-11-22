@@ -44,3 +44,12 @@ for (var i = 0; i < chapters.length; i++) {
 
 
 //TBD: add recommendation presets: map "definition" keyword with the recommended defs. render them.
+var suggestions = [
+'XXXs definition',
+
+];
+
+var suggestMap = {
+	'definition': suggestions[0]
+};
+

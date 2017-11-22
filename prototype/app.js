@@ -117,12 +117,15 @@ function seeSelected(){
 	console.log(selected.data())
 }
 
-function addNode(pos){
+function addNode(pos, type){
 	var data = {
 		id: newId(),
 		type: 'type3',
 		text: 'new node'
 	};
+	if (type == 'suggestion'){
+		data['type'] = 'suggestion';		
+	}
 	var ele = cy.add({
   		group:'nodes',
     	data: data,
@@ -159,7 +162,25 @@ function updateText(){
 	var text = document.getElementById('textarea').value;
 	console.log(text)
 	selected.data()['text'] = text;
+	handleSuggestion(selected);
 }
+
+function handleSuggestion(node){
+	var text = node.data()['text'];
+	Object.keys(suggestMap).forEach(function(key,index) {
+    // key: the name of the object key
+    // index: the ordinal position of the key within the object
+    if (text.search(key) != -1){
+    	var newtext = suggestMap[key]
+    	var pos = node.position();
+    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
+    	newNode.data()['text'] = newtext;
+    	addEdge(node.id(), newNode.id(), 'suggestion')
+    } 
+});
+	suggested = suggestMap[text]
+}
+
 function addPredefinedNode(){
 	var data = {
 		id: newId(),
