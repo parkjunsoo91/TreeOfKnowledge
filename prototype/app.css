@@ -45,3 +45,9 @@ tr{
   top: 100px;
   right: 100px;
 }
+
+.spawn img{
+  position: absolute;
+  cursor: move;
+  z-index: 9;
+}

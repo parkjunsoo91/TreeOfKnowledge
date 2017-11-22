@@ -128,7 +128,7 @@ function addNode(pos, type){
 		text: 'new node'
 	};
 	if (type == 'suggestion'){
-		data['type'] = 'suggestion';		
+		data['type'] = 'suggestion';
 	}
 	var ele = cy.add({
   		group:'nodes',
@@ -180,7 +180,7 @@ function handleSuggestion(node){
 	    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
 	    	newNode.data()['text'] = newtext;
 	    	addEdge(node.id(), newNode.id(), 'suggestion')
-	    } 
+	    }
 	});
 }
 
@@ -222,7 +222,7 @@ function addFruit(){
     return;
   }
 
-	var img = document.createElement("img");
+	var img = document.createElement('img');
   img.src = "images/fruit2.png";
   img.style = "height:40px";
 
@@ -239,6 +239,31 @@ function decreaseFruitnum(){
     }
     resource -= 1;
     document.getElementById('fruitnum').value = resource;
+}
+
+function addSun(){
+
+  if(document.getElementById('sunnum').value == 0) {
+    return;
+  }
+
+	var img = document.createElement('img');
+  img.src = "images/sun4.png";
+  img.style = "height:100px";
+
+  var src = document.getElementById("spawn_p");
+  src.appendChild(img);
+
+  decreaseSunnum();
+}
+
+function decreaseSunnum(){
+    var resource = document.getElementById('sunnum').value;
+    if(resource == 0) {
+      return;
+    }
+    resource -= 1;
+    document.getElementById('sunnum').value = resource;
 }
 
 cy.on('tap', function(event){
