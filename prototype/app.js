@@ -1,8 +1,8 @@
 'use strict';
 
-//document.getElementById('add').onclick = function() {addNode()};
-//document.getElementById('remove').onclick = function() {removeSelected()};
 document.getElementById('edit').onclick = function() {updateText()};
+document.getElementById('share').onclick = function() {exportTree()};
+document.getElementById('favorite').onclick = function() {importTree()};
 
 var cy = cytoscape({
 	container: document.getElementById('cy'),
@@ -111,6 +111,17 @@ function playLayout(){
 	}, 1000)
 }
 
+function exportTree(){
+	var myObj = cy.json();
+	var myJson= JSON.stringify(myObj);
+	localStorage.setItem("myTree", myJson);
+}
+
+function importTree(){
+	var text = localStorage.getItem("myTree");
+	var obj = JSON.parse(text);
+	cy.json(obj);
+}
 
 function removeSelected(){
 	if (selected != null){
