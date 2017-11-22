@@ -74,3 +74,18 @@ tr{
   margin: auto;
   opacity: 0.3;
 }
+
+.heart{
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  left: 10px;
+}
+
+.heart img{
+  width: 40px;
+}
+
+.heart span{
+  font-size: 30px;
+}
