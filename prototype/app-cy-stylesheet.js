@@ -21,7 +21,7 @@ var defaultNodeStyle = {
 	'color': 'black',
 	//wrapping text
 	'text-wrap': 'wrap',
-	'text-max-width': 1000,
+	'text-max-width': 400,
 	//node label alignment
 	'text-valign': 'center',
 	'text-halign': 'center',
@@ -41,9 +41,9 @@ var suggestionNodeStyle = Object.assign({}, defaultNodeStyle);
 suggestionNodeStyle['background-color'] = '#084';
 suggestionNodeStyle['shape'] = 'roundrectangle';
 suggestionNodeStyle['border-opacity'] = 0.5;
+suggestionNodeStyle['background-opacity'] = 0.5
 
 
-//currently unused.. replaced by qTip UI
 var descriptionNodeStyle = Object.assign({}, defaultNodeStyle);
 descriptionNodeStyle['background-color'] = '#FF8';
 
@@ -59,7 +59,7 @@ var defaultEdgeStyle = {
 };
 
 var suggestionEdgeStyle = Object.assign({}, defaultEdgeStyle);
-suggestionEdgeStyle['line-style'] = 'dotted';
+suggestionEdgeStyle['line-style'] = 'dashed';
 suggestionEdgeStyle['opacity'] = 0.5;
 
 

@@ -9,20 +9,24 @@ var cy = cytoscape({
 	elements: initialElements,
 	style: [ // the stylesheet for the graph
 	    {
-			selector: 'node[type="type1"]',
+			selector: 'node[type="type1"]', //title
 			style: titleNodeStyle,
 	    },
 	    {
-			selector: 'node[type="type2"]',
+			selector: 'node[type="type2"]', //chapter
 			style: chapterNodeStyle,
 	    },
 	    {
-			selector: 'node[type="type3"]',
+			selector: 'node[type="type3"]', //keyword (limited), made from right toolbar
 			style: keywordNodeStyle,
 	    },
 	    {
 			selector: 'node[type="suggestion"]',
 			style: suggestionNodeStyle,
+	    },
+	    {
+			selector: 'node[type="type4"]', //descriptions (unlimited), made with right click
+			style: descriptionNodeStyle,
 	    },
 		{
 			selector: 'edge[type="default"]',
@@ -39,7 +43,7 @@ var cy = cytoscape({
 	],
 
 	layout: {
-	    name: 'random',
+	    name: 'preset',
 	    rows: 1
   	},
 
@@ -120,7 +124,7 @@ function seeSelected(){
 function addNode(pos, type){
 	var data = {
 		id: newId(),
-		type: 'type3',
+		type: 'type4',
 		text: 'new node'
 	};
 	if (type == 'suggestion'){
@@ -170,15 +174,14 @@ function handleSuggestion(node){
 	Object.keys(suggestMap).forEach(function(key,index) {
     // key: the name of the object key
     // index: the ordinal position of the key within the object
-    if (text.search(key) != -1){
-    	var newtext = suggestMap[key]
-    	var pos = node.position();
-    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
-    	newNode.data()['text'] = newtext;
-    	addEdge(node.id(), newNode.id(), 'suggestion')
-    } 
-});
-	suggested = suggestMap[text]
+	    if (text.search(key) != -1){
+	    	var newtext = suggestMap[key]
+	    	var pos = node.position();
+	    	var newNode = addNode({x:pos.x, y:pos.y-100}, 'suggestion');
+	    	newNode.data()['text'] = newtext;
+	    	addEdge(node.id(), newNode.id(), 'suggestion')
+	    } 
+	});
 }
 
 function addPredefinedNode(){
