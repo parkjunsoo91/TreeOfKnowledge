@@ -1,3 +1,11 @@
+#cy {
+  position: absolute;
+  left: 16%;
+  top: 0;
+  bottom: 0;
+  right: 21%;
+}
+
 svg {
   background-color: #FFF;
   cursor: default;
