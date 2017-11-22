@@ -182,6 +182,11 @@ function handleSuggestion(node){
 }
 
 function addPredefinedNode(){
+
+  if(document.getElementById('nodenum').value == 0) {
+    return;
+  }
+
 	var data = {
 		id: newId(),
 		type: 'type2',
@@ -195,6 +200,17 @@ function addPredefinedNode(){
           y: 0
       	}
   	});
+
+    decrease();
+}
+
+function decrease(){
+    var resource = document.getElementById('nodenum').value;
+    if(resource == 0) {
+      return;
+    }
+    resource -= 1;
+    document.getElementById('nodenum').value = resource;
 }
 
 

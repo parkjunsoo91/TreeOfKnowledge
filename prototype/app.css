@@ -20,10 +20,22 @@ td {
   border:2px solid #53777A;
 }
 
-tr:hover {
+.resbtn:hover {
   background-color: #FFFBC7;
 }
 
 textarea{
   border-style: none;
+}
+
+input:focus {
+    outline:none;
+}
+
+input{
+  border:none;
+}
+
+tr{
+  background-color: white;
 }
