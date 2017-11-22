@@ -39,3 +39,9 @@ input{
 tr{
   background-color: white;
 }
+
+.spawn {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+}
