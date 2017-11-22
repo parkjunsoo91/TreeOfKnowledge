@@ -2,7 +2,8 @@
 
 //document.getElementById('add').onclick = function() {addNode()};
 //document.getElementById('remove').onclick = function() {removeSelected()};
-//document.getElementById('selected').onclick = function() {seeSelected()};
+document.getElementById('edit').onclick = function() {updateText()};
+
 var cy = cytoscape({
 	container: document.getElementById('cy'),
 	elements: initialElements,
@@ -76,6 +77,7 @@ var cy = cytoscape({
 
 playLayout();
 
+//global variables
 var state = 'normal'
 var selected = null;
 
@@ -93,7 +95,7 @@ cy.on('tap', 'node', function(evt){
 	var text = node.data()['text'];
 	console.log(text);
 	var textarea = document.getElementById('textarea')
-	textarea.innerHTML = text;
+	textarea.value = text;
 	selected = node;
 });
 
@@ -121,7 +123,7 @@ function addNode(pos){
 		type: 'type3',
 		text: 'new node'
 	};
-	cy.add({
+	var ele = cy.add({
   		group:'nodes',
     	data: data,
     	position: {
@@ -129,19 +131,35 @@ function addNode(pos){
           y: pos.y
       	}
   	});
+  	return ele;
 }
-function addEdge(id1, id2){
+
+function addEdge(id1, id2, type){
 	var data = {
 		id: newId(),
+		type: 'default',
 		source: id1,
 		target: id2,
 	};
-	cy.add({
+	if (type == 'suggestion'){
+		data['type'] = 'suggestion';		
+	}
+	var ele = cy.add({
 		group: 'edges',
 		data: data,
 	});
+	return ele;
 }
 
+
+function updateText(){
+	if (selected == null){
+		return;
+	}
+	var text = document.getElementById('textarea').value;
+	console.log(text)
+	selected.data()['text'] = text;
+}
 function addPredefinedNode(){
 
   if(document.getElementById('nodenum').value == 0) {
@@ -244,26 +262,8 @@ cy.contextMenus({
 	    	onClickFunction: function(event) {
 	    		var target = event.target || event.cyTarget;
 	    		var pos = event.position || event.cyPosition;
-	    		var nodeId = newId();
-	    		var edgeId = newId();
-	    		cy.add([
-	    		{
-	    			group: 'nodes',
-	    			data: {
-	    				id: nodeId,
-	    				type: 'type3',
-	    				text: 'new node',
-	    			},
-	    			position: {x: pos.x, y: pos.y - 100}
-	    		},
-	    		{
-	    			group: 'edges',
-	    			data: {
-	    				id: edgeId,
-	    				source: target.id(),
-	    				target: nodeId,
-	    			}
-	    		}]);
+	    		var newNode = addNode(pos);
+	    		addEdge(target.id(), newNode.id());
 	    	}
 	    },
 	    {
