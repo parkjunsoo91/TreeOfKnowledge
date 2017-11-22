@@ -54,3 +54,15 @@ text.id {
   text-anchor: middle;
   font-weight: bold;
 }
+
+td {
+  border:2px solid #53777A;
+}
+
+tr:hover {
+  background-color: #FFFBC7;
+}
+
+textarea{
+  border-style: none;
+}
