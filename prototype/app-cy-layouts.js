@@ -19,7 +19,7 @@ var layoutOptions = {
   animationEasing: undefined,
 
   // The duration of the animation for animate:'end'
-  animationDuration: 2000,
+  animationDuration: 1000,
 
   // A function that determines whether the node should be animated
   // All nodes animated by default on animate enabled
@@ -54,7 +54,7 @@ var layoutOptions = {
   componentSpacing: 40,
 
   // Node repulsion (non overlapping) multiplier
-  nodeRepulsion: function( node ){ return 2048; },
+  nodeRepulsion: function( node ){ return 512; },
 
   // Node repulsion (overlapping) multiplier
   nodeOverlap: 4,

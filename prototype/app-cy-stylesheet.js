@@ -35,6 +35,8 @@ chapterNodeStyle['background-color'] = '#Fb8';
 
 var keywordNodeStyle = Object.assign({}, defaultNodeStyle);
 keywordNodeStyle['background-color'] = '#8Fb';
+keywordNodeStyle['shape'] = 'roundrectangle';
+
 
 var descriptionNodeStyle = Object.assign({}, defaultNodeStyle);
 descriptionNodeStyle['background-color'] = '#FF8';
@@ -44,12 +46,12 @@ var defaultEdgeStyle = {
 	'width': 5,
 	'curve-style': 'haystack',
 	'haystack-radius': 0,
-	'line-color': '#840',
+	'line-color': '#a62',
 	'line-style': 'solid',
 	'target-arrow-color': '#0f0',
 	'target-arrow-shape': 'triangle',
 };
 
 var defaultCoreStyle = {
-	'active-bg-color': 'red'
+	'active-bg-color': 'blue'
 };

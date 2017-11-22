@@ -3,74 +3,9 @@
 //document.getElementById('add').onclick = function() {addNode()};
 //document.getElementById('remove').onclick = function() {removeSelected()};
 //document.getElementById('selected').onclick = function() {seeSelected()};
-
-
-function addNode(){
-	cy.add({group: "nodes", data: {id:"new"}, position:{x:300, y:300}});
-}
-function removeSelected(){
-	if (selected != null){
-		cy.remove(selected);
-	}
-}
-function seeSelected(){
-	console.log(selected.data())
-}
-
-var id = getCurrentIdCounter()
-function getCurrentIdCounter(){
-	//TBD: need to get the max index of loaded graph
-	return 5
-}
-function newId(){
-	id += 1;
-	return id
-}
-
-
 var cy = cytoscape({
 	container: document.getElementById('cy'),
-	elements: [ // list of graph elements to start with
-		{ // node a
-			data: 
-			{ 
-				id: 1, 
-				type:'type1', 
-				text:'Game\nStudies' 
-			}
-		},
-		{ // node b
-			data: 
-			{ 
-				id: 2, 
-				type:'type2', 
-				text: 'What is Gamification and\n gamification research?'
-			}
-		},
-		{ // node c
-			data: 
-			{ 
-				id: 3, 
-				type:'type3',
-				text: 'Definition of Gamification' 
-			}
-		},
-		{ // edge ab
-			data: 
-			{ 
-				id: 4, 
-				source: '1', 
-				target: '2' 
-			}
-		},
-		{ // edge bc
-			data: 
-			{ 
-				id: 5, 
-				source: '2', 
-				target: '3' }
-		}
-	],
+	elements: initialElements,
 	style: [ // the stylesheet for the graph
 	    {
 			selector: 'node[type="type1"]',
@@ -126,15 +61,58 @@ var cy = cytoscape({
 	textureOnViewport: false,
 	motionBlur: false,
 	motionBlurOpacity: 0.2,
-	wheelSensitivity: 1,
+	wheelSensitivity: 0.1,
 	pixelRatio: 'auto'
 
 });
 
-var layout = cy.layout(layoutOptions);
-layout.run();
+playLayout();
+
 
 var selected = null;
+
+function playLayout(){
+	var layout = cy.layout(layoutOptions);
+	layout.run();
+	setTimeout(function(){
+		layout.stop();
+	}, 1000)	
+}
+
+
+function removeSelected(){
+	if (selected != null){
+		cy.remove(selected);
+	}
+}
+function seeSelected(){
+	console.log(selected.data())
+}
+
+var id = getCurrentIdCounter()
+function getCurrentIdCounter(){
+	//TBD: need to get the max index of loaded graph
+	return 5
+}
+function newId(){
+	id += 1;
+	return id
+}
+function addNode(pos){
+	var data = {
+		type: 'type3',
+		text: 'new node'
+	};
+	cy.add({
+  		group:'nodes',
+    	data: data,
+    	position: {
+          x: pos.x,
+          y: pos.y
+      	}
+  	});
+}
+
 
 cy.on('tap', 'node', function(evt){
 	var node = evt.target;
@@ -152,7 +130,7 @@ cy.on('tap', function(event){
 });
 
 cy.$('#1').qtip({
-  content: 'shere are descriptions!',
+  content: 'here are descriptions!',
   position: {
     my: 'top center',
     at: 'bottom center'
@@ -172,7 +150,7 @@ cy.contextMenus({
 	        id: 'remove',
 	        content: 'remove',
 	        tooltipText: 'remove',
-	        image: {src : "remove.svg", width : 12, height : 12, x : 6, y : 4},
+	        image: {src : "images/remove.svg", width : 12, height : 12, x : 6, y : 4},
 	        selector: 'node, edge',
 	        onClickFunction: function (event) {
 	          var target = event.target || event.cyTarget;
@@ -195,32 +173,18 @@ cy.contextMenus({
 	        id: 'add-node',
 	        content: 'add node',
 	        tooltipText: 'add node',
-	        image: {src : "add.svg", width : 12, height : 12, x : 6, y : 4},
+	        image: {src : "images/add.svg", width : 12, height : 12, x : 6, y : 4},
 	        coreAsWell: true,
 	        onClickFunction: function (event) {
-	          var data = {
-	              //group: 'nodes',
-	          	  type: 'type3',
-	              text: 'new node'
-	          };
-	          
-	          var pos = event.position || event.cyPosition;
-	          
-	          cy.add({
-	          		group:'nodes',
-	            	data: data,
-	            	position: {
-	                  x: pos.x,
-	                  y: pos.y
-	              }
-	          });
+				var pos = event.position || event.cyPosition;
+		        addNode(pos);
 	        }
 	    },
 	    {
 	    	id: 'add-connected-node',
 	    	content: 'add connected node',
 	    	tooltipText: 'create a node connected to this node',
-	    	image: {src : "add.svg", width : 12, height : 12, x : 6, y : 4},
+	    	image: {src : "images/add.svg", width : 12, height : 12, x : 6, y : 4},
 	    	selector: 'node',
 	    	onClickFunction: function(event) {
 	    		var target = event.target || event.cyTarget;
@@ -249,20 +213,20 @@ cy.contextMenus({
 	    },
 	    {
 	    	id: 'add-edge',
-	    	content: 'add connected node',
+	    	content: 'add edge',
 	    	tooltipText: 'add an edge connecting to another node',
-	    	image: {src : "add.svg", width : 12, height : 12, x : 6, y : 4},
+	    	image: {src : "images/add.svg", width : 12, height : 12, x : 6, y : 4},
 	    	selector: 'node',
 	    	onClickFunction: function(event) {
 	    		var target = event.target || event.cyTarget;
-	    		//TBD: 
+	    		//TBD: change game state to edge addition state, and possibly show edge following cursor
 	    	}
 	    },
 	    {
 	        id: 'remove-selected',
 	        content: 'remove selected',
 	        tooltipText: 'remove selected',
-	        image: {src : "remove.svg", width : 12, height : 12, x : 6, y : 6},
+	        image: {src : "images/remove.svg", width : 12, height : 12, x : 6, y : 6},
 	        coreAsWell: true,
 	        onClickFunction: function (event) {
 	          cy.$(':selected').remove();
