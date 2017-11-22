@@ -244,6 +244,25 @@ cy.$('#1').qtip({
 cy.contextMenus({
 	menuItems: [
 	    {
+	        id: 'accept-suggestion',
+	        content: 'accept suggestion',
+	        tooltipText: 'add suggested node to your tree',
+	        selector: 'node[type="suggestion"]',
+	        onClickFunction: function (event) {
+	          var target = event.target || event.cyTarget;
+	          if(document.getElementById('nodenum').value == 0) {
+			    return;
+			  }
+			  target.data()['type'] = 'type3';
+			  var edges = target.connectedEdges();
+			  for (var i=0; i < edges.length; i++){
+			  	edges[i].data()['type'] = 'default';
+			  }
+			  decrease();
+	        },
+	        hasTrailingDivider: true
+		},
+		{
 	        id: 'remove',
 	        content: 'remove',
 	        tooltipText: 'remove',
