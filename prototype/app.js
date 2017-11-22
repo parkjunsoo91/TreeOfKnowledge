@@ -225,9 +225,9 @@ function addFruit(){
 
 	var img = document.createElement('img');
   img.src = "images/fruit2.png";
-  img.style = "height:40px";
+  img.style = "height:50px";
 
-  var src = document.getElementById("spawn_p");
+  var src = document.getElementById("fspawn_p");
   src.appendChild(img);
 
   decreaseFruitnum();
@@ -252,7 +252,7 @@ function addSun(){
   img.src = "images/sun4.png";
   img.style = "height:100px";
 
-  var src = document.getElementById("spawn_p");
+  var src = document.getElementById("sspawn_p");
   src.appendChild(img);
 
   decreaseSunnum();
@@ -388,3 +388,5 @@ cy.contextMenus({
 	    },
 	]
 });
+
+//image movement
