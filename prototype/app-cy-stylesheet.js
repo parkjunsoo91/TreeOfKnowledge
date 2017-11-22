@@ -11,14 +11,14 @@ var defaultNodeStyle = {
 	//border
 	'border-width': 2,
 	'border-style': 'solid',
-	'border-color': 'black',
+	'border-color': '#663300',
 	//padding
 	'padding': '10px',
 	//labels
 	//label text
 	'label': 'data(text)',
 	//basic font styling
-	'color': 'black',
+	'color': '#663300',
 	//wrapping text
 	'text-wrap': 'wrap',
 	'text-max-width': 400,
@@ -31,17 +31,17 @@ var titleNodeStyle = Object.assign({}, defaultNodeStyle);
 titleNodeStyle['background-color'] = '#F88';
 
 var chapterNodeStyle = Object.assign({}, defaultNodeStyle);
-chapterNodeStyle['background-color'] = '#Fb8';
+chapterNodeStyle['background-color'] = 'white';
 
 var keywordNodeStyle = Object.assign({}, defaultNodeStyle);
 keywordNodeStyle['background-color'] = '#8Fb';
 keywordNodeStyle['shape'] = 'roundrectangle';
 
 var suggestionNodeStyle = Object.assign({}, defaultNodeStyle);
-suggestionNodeStyle['background-color'] = '#084';
+suggestionNodeStyle['background-color'] = 'green';
 suggestionNodeStyle['shape'] = 'roundrectangle';
-suggestionNodeStyle['border-opacity'] = 0.5;
-suggestionNodeStyle['background-opacity'] = 0.5
+suggestionNodeStyle['border-opacity'] = 1;
+suggestionNodeStyle['background-opacity'] = 0.5;
 
 
 var descriptionNodeStyle = Object.assign({}, defaultNodeStyle);
