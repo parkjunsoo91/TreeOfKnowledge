@@ -90,7 +90,7 @@ tempId = addInitialNode('type3', 'Affordance');
 addInitialEdge(tempId, findInitialElementId('type3', 'Service System'))
 
 tempId = addInitialNode('type3', 'Gamification\nresearch');
-addInitialEdge(tempId, findInitialElementId('type2', 'What is Gamification'))
+addInitialEdge(tempId, findInitialElementId('type2', 'Does gamification'))
 tempId = addInitialNode('type3', 'Goal Setting\nTheory');
 addInitialEdge(tempId, findInitialElementId('type3', 'research'))
 

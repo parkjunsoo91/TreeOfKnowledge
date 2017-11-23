@@ -18,7 +18,8 @@ var defaultNodeStyle = {
 	//label text
 	'label': 'data(text)',
 	//basic font styling
-	'color': '#442200',
+	'color': 'black',
+	'font-size': 16,
 	//wrapping text
 	'text-wrap': 'wrap',
 	'text-max-width': 400,
@@ -29,24 +30,30 @@ var defaultNodeStyle = {
 
 var titleNodeStyle = Object.assign({}, defaultNodeStyle);
 titleNodeStyle['background-color'] = '#F88';
+titleNodeStyle['font-size'] = 24;
+titleNodeStyle['text-transform'] = 'uppercase'
 
 var chapterNodeStyle = Object.assign({}, defaultNodeStyle);
 chapterNodeStyle['background-color'] = '#663300';
 chapterNodeStyle['color'] = 'white';
 
 var keywordNodeStyle = Object.assign({}, defaultNodeStyle);
-keywordNodeStyle['background-color'] = '#8Fb';
+keywordNodeStyle['background-color'] = 'green';
+keywordNodeStyle['background-blacken'] = -0.6;
 keywordNodeStyle['shape'] = 'roundrectangle';
+keywordNodeStyle['font-size'] = 20;
+
 
 var suggestionNodeStyle = Object.assign({}, defaultNodeStyle);
-suggestionNodeStyle['background-color'] = 'green';
-suggestionNodeStyle['shape'] = 'roundrectangle';
-suggestionNodeStyle['border-opacity'] = 1;
-suggestionNodeStyle['background-opacity'] = 0.5;
+suggestionNodeStyle['background-color'] = 'blue';
+suggestionNodeStyle['shape'] = 'ellipse';
+suggestionNodeStyle['border-opacity'] = 0.2;
+suggestionNodeStyle['background-opacity'] = 0.3;
 
 
 var descriptionNodeStyle = Object.assign({}, defaultNodeStyle);
-descriptionNodeStyle['background-color'] = '#FF8';
+descriptionNodeStyle['background-color'] = 'yellow';
+descriptionNodeStyle['background-blacken'] = -0.6;
 
 
 var defaultEdgeStyle = {

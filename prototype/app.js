@@ -133,7 +133,7 @@ function updateProgress(){
 		var progress = chapterProgress(chapter);
 		var progressPrev = chapter.data('progress');
 		chapter.data('progress', progress);
-		chapter.style('background-blacken', -0.5+progress*0.5);
+		chapter.style('background-blacken', -0.6+progress*0.8);
 		if (progressPrev != 1 && progress == 1){
 			reward('firstChapterComplete', 5);
 		}
