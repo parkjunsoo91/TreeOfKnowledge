@@ -30,7 +30,7 @@ for (var i = 0; i < chapters.length; i++) {
 			id: newId(),
 			type: 'type2',
 			text: chapters[i],
-			progress: 0.0
+			progress: 0.0,
 		},
 		position: {x:0, y:-100 * (i+1)},
 
@@ -52,7 +52,7 @@ function addInitialNode(type, text){
 	var data = {
 			id: newId(),
 			type: type,
-			text: text
+			text: text,
 		} 
 	initialElements.push({
 		data: data
@@ -68,7 +68,7 @@ function addInitialEdge(id1, id2)
 		target: id2,
 	}
 	initialElements.push({data:data});
-	return data['id']
+	return data['id'];
 }
 
 function findInitialElementId(type, str){

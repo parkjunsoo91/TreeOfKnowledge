@@ -79,6 +79,11 @@ var cy = cytoscape({
 
 });
 
+var achievements = {
+	firstEdge: {earned:false, msg:"Congratulations! You just made your first connection between node elements!"},
+	firstChapterComplete: {earned:false, msg:"Congratulations! You just completed your first chapter!"},
+}
+updateProgress();
 playLayout();
 
 //global variables
@@ -97,11 +102,21 @@ cy.on('tap', 'node', function(evt){
 
 	//show text content in UI
 	var text = node.data('text');
-	console.log(text);
 	var textarea = document.getElementById('textarea')
 	textarea.value = text;
 	selected = node;
+	console.log(node.data())
 });
+
+
+
+function reward(achievement, n){
+	if (achievements[achievement]['earned'] == false){
+		achievements[achievement]['earned'] = true;
+		showRewardMsg(achievements[achievement]['msg']);
+		increaseNodenum(n);
+	}
+}
 
 function playLayout(){
 	var layout = cy.layout(layoutOptions);
@@ -109,6 +124,30 @@ function playLayout(){
 	setTimeout(function(){
 		layout.stop();
 	}, 1000)
+}
+
+function updateProgress(){
+	var chapters = cy.nodes("[type='type2']");
+	for (var i=0; i < chapters.length; i++){
+		var chapter = chapters[i]
+		var progress = chapterProgress(chapter);
+		var progressPrev = chapter.data('progress');
+		chapter.data('progress', progress);
+		chapter.style('background-blacken', -0.5+progress*0.5);
+		if (progressPrev != 1 && progress == 1){
+			reward('firstChapterComplete', 5);
+		}
+	}
+}
+
+function chapterProgress(node){
+	var type3nodes = node.neighborhood("[type='type3']");
+	var type4nodes = node.neighborhood("[type='type4']");
+	var type3nodesRec3 = type3nodes.neighborhood("[type='type3']");
+	var type3nodesRec4 = type3nodes.neighborhood("[type='type4']");
+	var children = type3nodes.length + type4nodes.length + type3nodesRec3.length + type3nodesRec4.length;
+	var progress = Math.min(1, 0.2 * children);
+	return progress;
 }
 
 function exportTree(){
@@ -127,7 +166,7 @@ function addNode(pos, type){
 	var data = {
 		id: newId(),
 		type: 'type4',
-		text: 'new node'
+		text: 'new node',
 	};
 	if (type == 'suggestion'){
 		data['type'] = 'suggestion';
@@ -138,7 +177,7 @@ function addNode(pos, type){
     	position: {
           x: pos.x,
           y: pos.y
-      	}
+      	},
   	});
   	return ele;
 }
@@ -158,21 +197,19 @@ function addEdge(id1, id2, type){
 		data: data,
 	});
 	reward('firstEdge');
+	updateProgress();
 	return ele;
 }
 
-var achievements = {
-	firstEdge: {earned:false, msg:"Congratulations! You just made your first connection between node elements!"},
-	firstChapterComplete: {earned:false, msg:"Congratulations! You just completed your first chapter!"},
-}
-
-function reward(achievement){
-	if (achievements[achievement]['earned'] == false){
-		achievements[achievement]['earned'] = true;
-		showRewardMsg(achievements[achievement]['msg']);
+function removeElement(ele){
+	ele.remove();
+	if (ele.data('type') == 'type3'){
 		increaseNodenum();
 	}
+	updateProgress();
 }
+
+
 
 
 function updateText(){
@@ -336,6 +373,7 @@ function addQtip(ele){
 
 cy.contextMenus({
 	menuItems: [
+		
 	    {
 	        id: 'accept-suggestion',
 	        content: 'accept suggestion',
@@ -354,29 +392,6 @@ cy.contextMenus({
 			  decreaseNodenum();
 	        },
 	        hasTrailingDivider: true
-		},
-		{
-	        id: 'remove',
-	        content: 'remove',
-	        tooltipText: 'remove',
-	        image: {src : "images/remove.svg", width : 12, height : 12, x : 6, y : 4},
-	        selector: 'node, edge',
-	        onClickFunction: function (event) {
-	          var target = event.target || event.cyTarget;
-	          target.remove();
-	        },
-	        hasTrailingDivider: true
-		},
-		{
-	        id: 'hide',
-	        content: 'hide',
-	        tooltipText: 'hide',
-	        selector: '*',
-	        onClickFunction: function (event) {
-	          var target = event.target || event.cyTarget;
-	          target.hide();
-	        },
-	        disabled: false
 		},
 		{
 	        id: 'add-node',
@@ -415,6 +430,42 @@ cy.contextMenus({
 	    		selected = event.target;
 	    	}
 	    },
+	    {
+	        id: 'hide',
+	        content: 'hide',
+	        tooltipText: 'hide',
+	        selector: 'node[type="type4"]',
+	        onClickFunction: function (event) {
+	          var target = event.target || event.cyTarget;
+	          target.data('hidden', true);
+	          target.style({'label':'-'});
+	        },
+	        disabled: false,
+		},
+		{
+	        id: 'unhide',
+	        content: 'unhide',
+	        tooltipText: 'unhide',
+	        selector: 'node[type="type4"]',
+	        onClickFunction: function (event) {
+	          var target = event.target || event.cyTarget;
+	          target.data('hidden', false);
+	          target.style({'label': target.data('text')});
+	        },
+	        disabled: false,
+	        hasTrailingDivider: true
+		},
+	    {
+	        id: 'remove',
+	        content: 'remove',
+	        tooltipText: 'remove',
+	        image: {src : "images/remove.svg", width : 12, height : 12, x : 6, y : 4},
+	        selector: 'node, edge',
+	        onClickFunction: function (event) {
+	          var target = event.target || event.cyTarget;
+	          removeElement(target);
+	        }
+		},
 	    {
 	        id: 'remove-selected',
 	        content: 'remove selected',

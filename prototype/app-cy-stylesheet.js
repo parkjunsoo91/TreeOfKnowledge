@@ -18,7 +18,7 @@ var defaultNodeStyle = {
 	//label text
 	'label': 'data(text)',
 	//basic font styling
-	'color': '#663300',
+	'color': '#442200',
 	//wrapping text
 	'text-wrap': 'wrap',
 	'text-max-width': 400,
