@@ -108,7 +108,11 @@ cy.on('tap', 'node', function(evt){
 	console.log(node.data())
 });
 
-
+var newIds = 1000;
+function newId(){
+	newIds += 1;
+	return newIds;
+}
 
 function reward(achievement, n){
 	if (achievements[achievement]['earned'] == false){
@@ -160,6 +164,7 @@ function importTree(){
 	var text = localStorage.getItem("myTree");
 	var obj = JSON.parse(text);
 	cy.json(obj);
+	updateProgress();
 }
 
 function addNode(pos, type){

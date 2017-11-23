@@ -2,7 +2,7 @@
 
 var id = 0
 
-function newId(){
+function presetnewId(){
 	id += 1;
 	return id
 }
@@ -18,7 +18,7 @@ var chapters = [
 
 var initialElements = [{
 		data: { 
-			id: newId(), 
+			id: presetnewId(), 
 			type:'type1', 
 			text:'Game\nStudies' 
 		},
@@ -29,7 +29,7 @@ function getPreset(filled){
 	for (var i = 0; i < chapters.length; i++) {
 		var element = {
 			data: {
-				id: newId(),
+				id: presetnewId(),
 				type: 'type2',
 				text: chapters[i],
 				progress: 0.0,
@@ -42,7 +42,7 @@ function getPreset(filled){
 
 	for (var i = 0; i < chapters.length; i++) {
 		var element = {data: {
-			id: newId(),
+			id: presetnewId(),
 			type: 'default',
 			source: i+1,
 			target: i+2,
@@ -78,7 +78,7 @@ function getPreset(filled){
 
 function addInitialNode(type, text){
 	var data = {
-			id: newId(),
+			id: presetnewId(),
 			type: type,
 			text: text,
 		} 
@@ -92,7 +92,7 @@ function addInitialNode(type, text){
 function addInitialEdge(id1, id2)
 {
 	var data = {
-		id: newId(),
+		id: presetnewId(),
 		type: 'default',
 		source: id1,
 		target: id2,
