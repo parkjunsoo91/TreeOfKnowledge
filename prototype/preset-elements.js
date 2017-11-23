@@ -34,7 +34,7 @@ function getPreset(filled){
 				text: chapters[i],
 				progress: 0.0,
 			},
-			position: {x:0, y:-100 * (i+1)},
+			position: {x:0, y:-50 * (i+1)},
 
 		};
 		initialElements.push(element);

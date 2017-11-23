@@ -51,7 +51,7 @@ var layoutOptions = {
   randomize: false,
 
   // Extra spacing between components in non-compound graphs
-  componentSpacing: 20,
+  componentSpacing: 5,
 
   // Node repulsion (non overlapping) multiplier
   nodeRepulsion: function( node ){ return 512; },
