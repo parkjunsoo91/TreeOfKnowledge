@@ -401,7 +401,7 @@ cy.contextMenus({
 		},
 		{
 	        id: 'add-node',
-	        content: 'add node',
+	        content: 'add paragraph',
 	        tooltipText: 'add node',
 	        image: {src : "images/add.svg", width : 12, height : 12, x : 6, y : 4},
 	        coreAsWell: true,
@@ -412,7 +412,7 @@ cy.contextMenus({
 	    },
 	    {
 	    	id: 'add-connected-node',
-	    	content: 'add connected node',
+	    	content: 'add connected paragraph',
 	    	tooltipText: 'create a node connected to this node',
 	    	image: {src : "images/add.svg", width : 12, height : 12, x : 6, y : 4},
 	    	selector: 'node',
@@ -425,7 +425,7 @@ cy.contextMenus({
 	    },
 	    {
 	    	id: 'add-edge',
-	    	content: 'add edge',
+	    	content: 'connect edge',
 	    	tooltipText: 'add an edge connecting to another node',
 	    	image: {src : "images/add.svg", width : 12, height : 12, x : 6, y : 4},
 	    	selector: 'node',
@@ -472,16 +472,6 @@ cy.contextMenus({
 	          removeElement(target);
 	        }
 		},
-	    {
-	        id: 'remove-selected',
-	        content: 'remove selected',
-	        tooltipText: 'remove selected',
-	        image: {src : "images/remove.svg", width : 12, height : 12, x : 6, y : 6},
-	        coreAsWell: true,
-	        onClickFunction: function (event) {
-	          cy.$(':selected').remove();
-	        }
-	    },
 	]
 });
 
