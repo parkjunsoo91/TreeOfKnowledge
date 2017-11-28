@@ -172,7 +172,7 @@ function addNode(pos, type){
 	var data = {
 		id: newId(),
 		type: 'type4',
-		text: 'new node',
+		text: 'new paragraph',
 	};
 	if (type == 'suggestion'){
 		data['type'] = 'suggestion';
@@ -266,7 +266,7 @@ function addPredefinedNode(){
   var data = {
 		id: newId(),
 		type: 'type3',
-		text: 'new node'
+		text: 'new keyword'
 	};
 	var ele = cy.add({
   		group:'nodes',
