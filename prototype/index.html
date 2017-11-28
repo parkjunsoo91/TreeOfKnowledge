@@ -31,10 +31,32 @@
   <a href="#" class="w3-bar-item w3-button"><i class="material-icons w3-left w3-margin-right">notifications</i>Notification<span class="w3-tag w3-2017-grenadine w3-right">8</span></a>
   <a id="favorite" href="#" class="w3-bar-item w3-button"><i class="material-icons w3-left w3-margin-right">favorite</i> Favorite</a>
 
+  <button class="help w3-display-bottomleft" id="helpbtn"><i class="material-icons" style="font-size:35px;color:white">help_outline</i></button>
+
 </div>
 
 <!-- body -->
 <body>
+
+  <div id="helpModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>How to use Tree of Knowledge</h2>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the Modal Body</p>
+        <p>Some other text...</p>
+      </div>
+      <div class="modal-footer">
+        <h3>Modal Footer</h3>
+      </div>
+    </div>
+
+  </div>
+
   <div id="cy">
     <!-- <div class="w3-panel w3-red w3-display-container w3-card" style="position: absolute;right:0;opacity: 0.95;z-index:11;">
       <span onclick="this.parentElement.style.display='none'"
@@ -62,7 +84,7 @@
     </div>
     <div class="heart">
       <img src="images/heart-icon.png">
-      <span>23</span>
+      <span class="tooltip">23<span class="tooltiptext">좋아요 개수</span></span>
     </div>
   </div>
 </body>
