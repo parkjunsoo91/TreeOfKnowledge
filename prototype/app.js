@@ -6,7 +6,8 @@ document.getElementById('favorite').onclick = function() {importTree()};
 
 var cy = cytoscape({
 	container: document.getElementById('cy'),
-	elements: getPreset(false),
+	//elements: getPreset(false),
+	elements: evaluationSet,
 	style: [ // the stylesheet for the graph
 	    {
 			selector: 'node[type="type1"]', //title

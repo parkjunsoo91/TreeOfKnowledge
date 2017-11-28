@@ -16,6 +16,49 @@ var chapters = [
 'Behavioral \nEconomics Theory',
 ]
 
+var evaluationSet = [
+	{
+		data: { 
+			id: presetnewId(), 
+			type:'type1', 
+			text:'5분 사탐', 
+		},
+		position: {x: 0, y: 0}
+	},
+	{
+		data: { 
+			id: presetnewId(), 
+			type:'type2', 
+			text:'이슬람교', 
+		},
+		position: {x: 100, y: -100}
+	},
+	{
+		data: { 
+			id: presetnewId(), 
+			type:'type2', 
+			text:'우상론과 베이컨', 
+		},
+		position: {x: -100, y: -100}
+	},
+	{
+		data: { 
+			id: presetnewId(), 
+			type:'default', 
+			source: 1,
+			target: 2,
+		},
+	},
+	{
+		data: { 
+			id: presetnewId(), 
+			type:'default', 
+			source: 1,
+			target: 3, 
+		},
+	},
+]
+
 var initialElements = [{
 		data: { 
 			id: presetnewId(), 
