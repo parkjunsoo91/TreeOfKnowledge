@@ -47,12 +47,24 @@
         <h2>How to use Tree of Knowledge</h2>
       </div>
       <div class="modal-body">
-        <p>Some text in the Modal Body</p>
-        <p>Some other text...</p>
+        <p>Tree of Knowledge는 온라인 강의학습을 도와주기 위해 제작된 마인드맵 강의 플랫폼입니다.</p>
+        <p>마인드맵은 총 4종류의 노드로 구성할 수 있습니다.</p>
+        <p>노드1 (Red): 강의명</p>
+        <p>노드2 (Brown): 강의의 각 챕터명</p>
+        <p>노드3 (Green): 사용자가 작성 가능한 챕터의 키워드. 개수가 한정됨.</p>
+        <p>노드4 (Yellow): 사용자가 자유롭게 작성 가능한 노트</p>
+        <br/>
+        <p>노드3(키워드)은 오른쪽 인벤토리의 버튼을 통해 생성가능합니다.</p>
+        <p>노드4(노트)는 오른쪽 클릭을 통해 자유롭게 생성가능합니다.</p>
+        <p>노드를 연결하는 <b>엣지</b>는 노드를 오른쪽 클릭하여 "add edge"를 선택한 후 연결하고 싶은 다른 노드를 클릭하면 생성가능합니다.</p>
+        <p>노드의 내용은 오른쪽 텍스트 에디터를 통해 수정할 수 있습니다.</p>
+        <br/>
+        <p>UI에 관한 설명은 해당 인터페이스에 마우스를 가져가시면 보실 수 있습니다.</p>
+        <p>기타 문의사항은 제작자에 개인적으로 연락부탁드립니다.</p>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <h3>Modal Footer</h3>
-      </div>
+      </div> -->
     </div>
 
   </div>
@@ -94,11 +106,11 @@
 
   <div class="w3-container w3-margin-bottom" style="width: 80%;margin-left:10%;">
     <p>
-    <button id='share' class="w3-button w3-block w3-2017-grenadine">SHARE</button>
+    <button id='share' class="w3-button w3-block w3-2017-grenadine" title="이 트리를 다른 사용자와 공유할 수 있습니다">SHARE</button>
   </p>
   </div>
 
-  <div class="w3-container w3-margin-top w3-margin-bottom">
+  <div class="w3-container w3-margin-top w3-margin-bottom" title="노드와 데코 아이템을 가지고 있는 개수만큼 트리에 배치할 수 있습니다">
     <table class="w3-light-grey w3-border" style="width:100%;text-align:center;">
       <tr>
         <td class="resbtn" style="width: 60%;">
@@ -138,14 +150,14 @@
     </table>
   </div>
 
-  <div class="input_text w3-container">
+  <div class="input_text w3-container" title="노드의 내용을 수정하는 것이 가능합니다">
       <p>
       <textarea id="textarea" rows="5" cols="25" class="w3-block" style="background-color:white;"></textarea></p>
       <p>
       <button id="edit" class="w3-button w3-block" style="background-color: #53777A;">EDIT</button></p>
   </div>
 
-  <div class="progress-circle p25" style="margin-left: 30%;">
+  <div class="progress-circle p25" style="margin-left: 30%;" title="남은 노드의 양을 보여줍니다">
      <span><img src="images/leaf3.png" alt="3" style="height:60px;margin-top:20%;"/></span>
      <div class="left-half-clipper">
         <div class="first50-bar"></div>
@@ -153,7 +165,7 @@
      </div>
   </div>
 
-  <div>
+  <div title="온라인 강의 진도와 사용자가 작성한 트리의 진도를 비교할 수 있습니다">
     <span style="margin-left: 5%;">MOOC</span>
     <div class="w3-light-grey" style="margin-left:5%;margin-right:5%;">
       <div class="w3-container w3-2017-shaded-spruce" style="width:30%;height:20px;"></div>
