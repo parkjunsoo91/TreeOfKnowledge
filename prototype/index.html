@@ -21,15 +21,15 @@
     <img src="images/img_avatar3.png" alt="Avatar" style="width:80%;opacity:0.85;margin-left:10%;margin-top:16px;">
     <div class="w3-container">
     <h4 style="text-align:center;"><b>Jun</b></h4>
-    <button class="w3-button w3-teal w3-margin-bottom" style="margin-left:10%;">Go to Garden</button>
+    <button class="w3-button w3-teal w3-margin-bottom" style="margin-left:10%;" title="현재까지 작성한 트리를 모아서 보는 것이 가능합니다">Go to Garden</button>
     </div>
   </div>
 
-  <a href="#" class="w3-bar-item w3-button w3-2017-grenadine"><i class="material-icons w3-left w3-margin-right">home</i>Class</a>
-  <a href="#" class="w3-bar-item w3-button"><i class="material-icons w3-left w3-margin-right">whatshot</i>Popular</a>
-  <a href="#" class="w3-bar-item w3-button"><i class="material-icons w3-left w3-margin-right">people</i>Subscribe</a>
-  <a href="#" class="w3-bar-item w3-button"><i class="material-icons w3-left w3-margin-right">notifications</i>Notification<span class="w3-tag w3-2017-grenadine w3-right">8</span></a>
-  <a id="favorite" href="#" class="w3-bar-item w3-button"><i class="material-icons w3-left w3-margin-right">favorite</i> Favorite</a>
+  <a href="#" class="w3-bar-item w3-button w3-2017-grenadine" title="수강중인 강의의 다른 트리를 볼 수 있습니다"><i class="material-icons w3-left w3-margin-right">home</i>Class</a>
+  <a href="#" class="w3-bar-item w3-button" title="가장 많은 좋아요를 획득한 트리를 볼 수 있습니다"><i class="material-icons w3-left w3-margin-right" >whatshot</i>Popular</a>
+  <a href="#" class="w3-bar-item w3-button" title="구독한 사용자의 트리를 볼 수 있습니다"><i class="material-icons w3-left w3-margin-right">people</i>Subscribe</a>
+  <a href="#" class="w3-bar-item w3-button" title="구독한 사용자가 새로운 트리를 작성하였을때 알려줍니다"><i class="material-icons w3-left w3-margin-right">notifications</i>Notification<span class="w3-tag w3-2017-grenadine w3-right">8</span></a>
+  <a id="favorite" href="#" class="w3-bar-item w3-button" title="사용자가 좋아요를 한 트리를 보여줍니다"><i class="material-icons w3-left w3-margin-right">favorite</i> Favorite</a>
 
   <button class="help w3-display-bottomleft" id="helpbtn"><i class="material-icons" style="font-size:35px;color:white">help_outline</i></button>
 
@@ -82,9 +82,9 @@
     <div class="tree">
       <img src="images/tree1.jpg">
     </div>
-    <div class="heart">
+    <div class="heart" title="이 트리가 획득한 좋아요 개수를 보여줍니다">
       <img src="images/heart-icon.png">
-      <span class="tooltip">23<span class="tooltiptext">좋아요 개수</span></span>
+      <span>23</span>
     </div>
   </div>
 </body>
@@ -140,7 +140,7 @@
 
   <div class="input_text w3-container">
       <p>
-      <textarea id="textarea" rows="5" cols="25" style="background-color:white"></textarea></p>
+      <textarea id="textarea" rows="5" cols="25" class="w3-block" style="background-color:white;"></textarea></p>
       <p>
       <button id="edit" class="w3-button w3-block" style="background-color: #53777A;">EDIT</button></p>
   </div>
